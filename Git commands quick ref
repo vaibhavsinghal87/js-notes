@@ -1,1 +1,2 @@
+git branch - displays all branches.
 git show-branch --list - displays all branches.
