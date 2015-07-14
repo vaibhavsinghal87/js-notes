@@ -1,3 +1,5 @@
+origin – that is the default name Git gives to the server you cloned from.
+
 git config 
 git config --system
 git config --global
@@ -15,8 +17,26 @@ git clone https://github.com/libgit2/libgit2 mylibgit
 git status -s
 git status --short
 
-git diff --staged - changes that you’ve staged that will go into your next commit.
+git diff --staged : changes that you’ve staged that will go into your next commit.
+git difftool --tool-help : displays graphical or external diff viewing program.
+git commit -a -m 'comment' : Skipping the Staging Area.
+
+git log
+
+git reset
+
+git remote
+git remote -v
+
+git tag
+
+git config --global alias.ci commit : sets up an alias for commit command.
+
+git branch testing
+git branch : displays all branches.
+git show-branch --list : displays all branches.
+
+git checkout testing
 
 
-git branch - displays all branches.
-git show-branch --list - displays all branches.
+
