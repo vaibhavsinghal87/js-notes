@@ -1,2 +1,22 @@
+git config 
+git config --system
+git config --global
+git config --list
+git config user.name
+
+git help config
+
+git init
+git add
+git commit -m 'initial project version'
+git clone https://github.com/libgit2/libgit2
+git clone https://github.com/libgit2/libgit2 mylibgit
+
+git status -s
+git status --short
+
+git diff --staged - changes that you’ve staged that will go into your next commit.
+
+
 git branch - displays all branches.
 git show-branch --list - displays all branches.
