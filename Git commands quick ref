@@ -8,16 +8,19 @@ booyah/master as your default remote branch.
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.
 
 git config 
+git config --global -e : edit global config file.
 git config --system
 git config --global
 git config --list
 git config user.name
-
+git config --global alias.ci commit : sets up an alias for commit command.
+git config --global diff.tool toolname : sets the external tool to compare differences.
 git help config
 
 git init
+
 git add
-git commit -m 'initial project version'
+
 git clone https://github.com/libgit2/libgit2
 git clone https://github.com/libgit2/libgit2 mylibgit
 
@@ -26,6 +29,9 @@ git status --short
 
 git diff --staged : changes that you’ve staged that will go into your next commit.
 git difftool --tool-help : displays graphical or external diff viewing program.
+git difftool : will open differences one by one per file in the compare tool specified in .gitconfig.
+
+git commit -m 'initial project version'
 git commit -a -m 'comment' : Skipping the Staging Area.
 
 git log
@@ -37,8 +43,6 @@ git remote
 git remote -v
 
 git tag
-
-git config --global alias.ci commit : sets up an alias for commit command.
 
 git branch testing
 git branch : displays all branches.
