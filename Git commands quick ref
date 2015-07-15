@@ -1,5 +1,12 @@
 origin – that is the default name Git gives to the server you cloned from.
 
+Just like the branch name “master” does not have any special meaning in Git, neither does “origin”. While “master” is 
+the default name for a starting branch when you run git init which is the only reason it’s widely used, “origin” is the 
+default name for a remote when you run git clone. If you run git clone -o booyah instead, then you will have 
+booyah/master as your default remote branch.
+
+In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.
+
 git config 
 git config --system
 git config --global
@@ -22,6 +29,7 @@ git difftool --tool-help : displays graphical or external diff viewing program.
 git commit -a -m 'comment' : Skipping the Staging Area.
 
 git log
+git log --oneline
 
 git reset
 
@@ -38,5 +46,8 @@ git show-branch --list : displays all branches.
 
 git checkout testing
 
+git fetch origin
+
+git push origin --delete serverfix : deletes remote branch.
 
 
