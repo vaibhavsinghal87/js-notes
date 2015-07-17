@@ -54,4 +54,4 @@ git fetch origin
 
 git push origin --delete serverfix : deletes remote branch.
 
-
+git mv old_filename new_filename : To rename a file.
