@@ -7,6 +7,10 @@ booyah/master as your default remote branch.
 
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.
 
+Git only allows to amend the last commit because nothing depends on it.
+
+When we do git reset to a previous point in time, it doesn't throw away the commits. They simply get garbage collected.
+
 git config 
 git config --global -e : edit global config file.
 git config --system
@@ -20,38 +24,70 @@ git help config
 git init
 
 git add
+git add . : adds everything.
 
 git clone https://github.com/libgit2/libgit2
 git clone https://github.com/libgit2/libgit2 mylibgit
+git clone -b <branch> <remote_repo> : Checkout specific branch.
 
-git status -s
+git status : tells the difference between the three trees of git.
+git status -s : Gives short output.
 git status --short
 
-git diff --staged : changes that you’ve staged that will go into your next commit.
+git diff : shows difference between the file in the repository(commit to which HEAD points) and the working directory.
+git diff <file_name>
+git diff --staged : compares changes in the staging area with the repository. changes that you’ve staged that will go 
+into your next commit.
+git diff --cached : same as git diff --staged. used in versions prior to 1.6.
 git difftool --tool-help : displays graphical or external diff viewing program.
 git difftool : will open differences one by one per file in the compare tool specified in .gitconfig.
 
 git commit -m 'initial project version'
-git commit -a -m 'comment' : Skipping the Staging Area.
+git commit -am 'comment' : Skipping the Staging Area.
+git commit --amend -m "msg" : to amend a commit.
 
 git log
 git log --oneline
+git log --oneline -3 : shows three commits.
+git log origin/master --oneline
 
-git reset
+git reset or git reset --mixed : always moves the HEAD pointer. simply unstages everything. Only operates on the
+working directory and the staging. 
+area, so our git log history remains unchanged.
+git reset HEAD -- file or  git reset <file> : Unstages single file.
+git reset --soft : Doesn't touch the staging area. Only moves the HEAD pointer. For merging commits into a single 
+commit. Reshaping commit history.
+git reset --hard : Clears staging area, reverts all changes in your working directory to the last commit.
+
+git clean : removes untracked files from your working directory.
+git clean -f : forces git clean to run.
+git clean -n : shows which files are going to be removed.
 
 git remote
 git remote -v
-
-git tag
+git remote add : To push our local repo to the GitHub server we'll need to add a remote repository.
 
 git branch testing
 git branch : displays all branches.
 git show-branch --list : displays all branches.
 
+git show : Reports the changes introduced by the most recent commit. Examines a particular commit.
+
 git checkout testing
+git checkout -- index.html : discard local changesand downloads the file from repo. 
+git checkout 2907d12603a24 -- resources.html : retrieving old version of a file. When u checkout from a particular
+revision, it puts it into staging area.
 
 git fetch origin
 
 git push origin --delete serverfix : deletes remote branch.
 
-git mv old_filename new_filename : To rename a file.
+git mv old_filename new_filename : To rename or move a file.
+
+git rm <file_to_delete>
+
+git gui : opens git gui window.
+
+git tag
+
+git revert : creates a mirror image of a commit.
