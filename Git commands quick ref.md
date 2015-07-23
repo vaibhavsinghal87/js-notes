@@ -109,7 +109,7 @@ in the .git/packed-refs file. You can treat the remote tracking branches as read
 
 git config  
 git config -e  
-git config --global -e : edit global config file
+git config --global -e : edit global config file.  
 git config --system  
 git config --global  
 git config --list  
@@ -186,8 +186,8 @@ git remote add : To push our local repo to the GitHub server we'll need to add a
 git remote add ... : To communicate with the outside world, git uses what are called remotes. These are repositories 
 other than the one on your local disk which you can push your changes into (so that other people can see them) or pull
 from (so that you can get others changes). The command git remote add origin git@github.com:peter/first_app.git creates a new remote called origin located at git@github.com:peter/first_app.git. Once you do this, in your push commands, you can push to origin instead of typing out the whole URL.  
-git remote show origin : shows  information about a particular remote.   
-git remote rename origin newRemoteName  
+git remote show origin : shows  information about a particular remote.    
+git remote rename origin newRemoteName   
 git remote rm <remote-name> : removes a remote.  
 
 git fetch [remote-name] : The command goes out to that remote project and pulls down all the data from that remote 
@@ -196,10 +196,10 @@ project that you don’t have yet.
 git push origin master : This is a command that says push the commits in the local branch named master to the remote 
 named origin.  
 git push --delete origin branchName : deletes remote branch.  
-git push origin :branchName : deletes a branch on the remote.  
+git push origin :branchName : deletes a branch on the remote. 
 git push -u origin new-branch : If you have added a local branch of your own and want to start sharing it with others,
 use the -u option to have Git add your branch to the remote, and set up tracking for your local branch in the usual
-way.
+way.  
 
 
 git merge origin/master
