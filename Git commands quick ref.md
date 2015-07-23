@@ -1,4 +1,4 @@
-** Git Keypoints **
+#Git Keypoints
 
 origin – that is the default name Git gives to the server you cloned from. The remote is usually called origin because
 it is where the source originated from.
@@ -105,101 +105,98 @@ in the .git/packed-refs file. You can treat the remote tracking branches as read
 
 * * *
 
-** Git Commands **
+#Git Commands
 
-git config 
-git config -e
-git config --global -e : edit global config file.
-git config --system
-git config --global
-git config --list
-git config user.name
-git config --global alias.ci commit : sets up an alias for commit command.
-git config --global diff.tool toolname : sets the external tool to compare differences.
-git help config
+git config  
+git config -e  
+git config --global -e : edit global config file
+git config --system  
+git config --global  
+git config --list  
+git config user.name  
+git config --global alias.ci commit : sets up an alias for commit command.  
+git config --global diff.tool toolname : sets the external tool to compare differences.  
+git help config  
 git config --global core.editor "\"c:\Program Files (x86)\Notepad++\notepad++.exe\"" : sets the notepadd++ as default 
 editor.
 
 git init
 
-git add
+git add  
 git add . : adds everything.
 
-git clone https://github.com/libgit2/libgit2
-git clone https://github.com/libgit2/libgit2 mylibgit
-git clone -b <branch> <remote_repo> : Checkout specific branch.
+git clone https://github.com/libgit2/libgit2  
+git clone https://github.com/libgit2/libgit2 mylibgit  
+git clone -b <branch> <remote_repo> : Checkout specific branch.  
 
-git status : tells the difference between the three trees of git.
-git status -s : Gives short output.
-git status --short
+git status : tells the difference between the three trees of git.  
+git status -s : Gives short output.  
+git status --short  
 
-git diff : shows difference between the file in the repository(commit to which HEAD points) and the working directory.
-git diff <file_name>
+git diff : shows difference between the file in the repository(commit to which HEAD points) and the working directory.  
+git diff <file_name>  
 git diff --staged : compares changes in the staging area with the repository. changes that you’ve staged that will go 
-into your next commit.
-git diff --cached : same as git diff --staged. used in versions prior to 1.6.
-git difftool --tool-help : displays graphical or external diff viewing program.
-git difftool : will open differences one by one per file in the compare tool specified in .gitconfig.
-git diff master..origin/master
+into your next commit.  
+git diff --cached : same as git diff --staged. used in versions prior to 1.6.  
+git difftool --tool-help : displays graphical or external diff viewing program.  
+git difftool : will open differences one by one per file in the compare tool specified in .gitconfig.  
+git diff master..origin/master  
 git diff master~1 master -- filename
 
-git commit -m 'initial project version'
-git commit -am 'comment' : Skipping the Staging Area.
-git commit --amend -m "msg" : to amend a commit.
+git commit -m 'initial project version'  
+git commit -am 'comment' : Skipping the Staging Area.  
+git commit --amend -m "msg" : to amend a commit.  
 
-git log
-git log --oneline
-git log --oneline -3 : shows three commits.
-git log origin/master --oneline
-git log --decorate --graph --oneline --all
+git log  
+git log --oneline  
+git log --oneline -3 : shows three commits.  
+git log origin/master --oneline  
+git log --decorate --graph --oneline --all  
 
 git reset or git reset --mixed : always moves the HEAD pointer. simply unstages everything. Only operates on the
-working directory and the staging. 
-area, so our git log history remains unchanged.
-git reset HEAD -- file or  git reset <file> : Unstages single file.
+working directory and the staging area, so our git log history remains unchanged.  
+git reset HEAD -- file or  git reset <file> : Unstages single file.  
 git reset --soft : Doesn't touch the staging area. Only moves the HEAD pointer. For merging commits into a single 
-commit. Reshaping commit history.
+commit. Reshaping commit history.  
 git reset --hard : Clears staging area, reverts all changes in your working directory to the last commit.
 
-git clean : removes untracked files from your working directory.
-git clean -f : forces git clean to run.
+git clean : removes untracked files from your working directory.  
+git clean -f : forces git clean to run.  
 git clean -n : shows which files are going to be removed.
 
-git branch testing master : creates testing branch from master branch.
-git branch : displays all branches.
-git show-branch --list : displays all branches.
-git branch -r : shows remote branch.
-git branch -a : shows all branches, both local and remote. 
+git branch testing master : creates testing branch from master branch.  
+git branch : displays all branches.  
+git show-branch --list : displays all branches.  
+git branch -r : shows remote branch.  
+git branch -a : shows all branches, both local and remote.  
 git branch -vv : lists upstream branches.
 
 git show : Reports the changes introduced by the most recent commit. Examines a particular commit.
 
-git checkout testing
-git checkout -- index.html : discard local changesand downloads the file from repo. 
+git checkout testing  
+git checkout -- index.html : discard local changesand downloads the file from repo.  
 git checkout 2907d12603a24 -- resources.html : retrieving old version of a file. When u checkout from a particular
 revision, it puts it into staging area.
 
 git remote : To see which remote servers you have configured, you can run the git remote command. It lists the 
 shortnames of each remote handle you’ve specified. If you’ve cloned your repository, you should at least see 
-origin – that is the default name Git gives to the server you cloned from.
-git remote -v
-git remote add : To push our local repo to the GitHub server we'll need to add a remote repository.
+origin – that is the default name Git gives to the server you cloned from.  
+git remote -v  
+git remote add : To push our local repo to the GitHub server we'll need to add a remote repository.  
 git remote add ... : To communicate with the outside world, git uses what are called remotes. These are repositories 
 other than the one on your local disk which you can push your changes into (so that other people can see them) or pull
-from (so that you can get others changes). The command git remote add origin git@github.com:peter/first_app.git creates 
-a new remote called origin located at git@github.com:peter/first_app.git. Once you do this, in your push commands, you
-can push to origin instead of typing out the whole URL.
-git remote show origin : shows  information about a particular remote.
-git remote rename origin newRemoteName
-git remote rm <remote-name> : removes a remote.
+from (so that you can get others changes). The command git remote add origin git@github.com:peter/first_app.git creates a new remote called origin located at git@github.com:peter/first_app.git. Once you do this, in your push commands, you can push to origin instead of typing out the whole URL.  
+git remote show origin : shows  information about a particular remote.   
+git remote rename origin newRemoteName  
+git remote rm <remote-name> : removes a remote.  
 
 git fetch [remote-name] : The command goes out to that remote project and pulls down all the data from that remote 
 project that you don’t have yet.
 
 git push origin master : This is a command that says push the commits in the local branch named master to the remote 
-named origin.
-git push --delete origin branchName : deletes remote branch.
-git push origin :branchName : deletes a branch on the remote.
+named origin.  
+git push --delete origin branchName : deletes remote branch.  
+git push origin :branchName : deletes a branch on the remote.  
 git push -u origin new-branch : If you have added a local branch of your own and want to start sharing it with others,
 use the -u option to have Git add your branch to the remote, and set up tracking for your local branch in the usual
 way.
@@ -227,13 +224,13 @@ git mergetool -t kdiff3
 cat .git/config : To see remotes and other config settings.
 
 * * *
-** References **
+#References
 
-http://gitref.org/
-https://git-scm.com/docs
-http://ndpsoftware.com/git-cheatsheet.html
-http://rogerdudler.github.io/git-guide/
-http://git-scm.com/book/en/v2
-http://www.dataschool.io/git-quick-reference-for-beginners/ 
-http://jonas.nitro.dk/git/quick-reference.html
-http://marklodato.github.io/visual-git-guide/index-en.html
+<http://gitref.org/><br/>
+<https://git-scm.com/docs><br/>
+<http://ndpsoftware.com/git-cheatsheet.html><br/>
+<http://rogerdudler.github.io/git-guide/><br/>
+<http://git-scm.com/book/en/v2><br/>
+<http://www.dataschool.io/git-quick-reference-for-beginners/><br/>
+<http://jonas.nitro.dk/git/quick-reference.html><br/>
+<http://marklodato.github.io/visual-git-guide/index-en.html>
