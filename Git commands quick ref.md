@@ -103,6 +103,46 @@ branch would be named remotes/origin/lorem. This name can be simplified to origi
 are stored in a packed format; therefore you will not find them in the refs/remotes/origin directory. They are stored
 in the .git/packed-refs file. You can treat the remote tracking branches as read only—we will not commit in them.
 
+Another way to unstage a file that you just added is to use the git rm command.
+
+Note that .gitignore file is not retroactive. If you have added some *.tmp files to the index before introducing the .gitignore file, they will stay under revision control. You have to remove them manually if you want to skip them.
+
+We said that commits have an ID and a lot of other useful information bundled with binary blobs of files included. Sometimes, we want to mark a commit with a tag to place a milestone in our repository. Tags will become useful in the future to keep track of important things such as a new software release, particular bug fixes, or whatever you want to put on evidence.
+
+As you can see, Git highlighted the conflict. A conflict-marked area begins with <<<<<<< and ends with >>>>>>>. The two conflicting blocks themselves are divided by a sequence of =======. To solve the conflict, you have to manually edit the file, deciding what to maintain, edit, or delete. After that, remove the conflict markers and commit changes to mark the conflict as resolved.
+
+Working of different features in parallel does not make a developer happy, but sometimes it happens. So, at a certain point, we have to break the work on a branch and switch to another one. However, sometimes, we have some modifications that are not ready to be committed, because they are partial, inconsistent, or even won't compile. In this situation, Git prevents you from switching to another branch. You can only switch from one branch to another if you are in a clean state. To quickly resolve this situation, we can stash the modifications, putting them into a sort of box, ready to be unboxed at a later time. Stashing is as simple as typing the git stash command.
+
+A Git remote is another computer that has the same repository you have on your computer. Every computer that hosts the same repository on a shared network can be the remote of other computers.
+
+Using the -u option, we told Git to track the remote branch. Tracking a remote branch is the way to tie your local branch with the remote one. Note that this behavior is not automatic; you have to set it if you want it (Git does nothing until you ask for it!). When a local branch tracks a remote branch, you actually have a local and remote branch that can be kept easily in sync. This is very useful when you have to collaborate with some remote coworkers at the same branch, allowing all of them to keep their work in sync with other people's changes. Furthermore, consider that when you use the git fetch command, you will get changes from all tracked branches. While you use the git push command, the default behavior is to push to the corresponding remote branch only.
+
+However, first, remember that fork is not a Git feature, but a GitHub invention. When you fork on GitHub, you get a server-side clone of the repository on your GitHub account. If you clone your forked repository locally in the remote list, you would find the origin alias that points to your account repository. The original repository will generally assume the upstream alias (but this is not automatic, you have to add it manually). Now, you can keep your local repository in sync with the changes in your remote and the origin alias. You can also get changes ones coming from the upstream remote, the original repository you forked.
+
+However, first, you have to know that pull requests can be made only from separated branches.
+ 
+There are different configuration files for every different configuration level. You can basically set every parameter at every level according to your needs. If you set the same parameters at different levels, the lowest-level parameter hides the top level parameters; so, for example, if you set user.name at global level, it will hide the one eventually set up at system level; if you set it at repository level, it will hide the one specified at global level and the one eventually set up at system level.
+
+In Git you often need to reference the past (for example, the last commit); for this scope, we can use two different special characters which are the tilde ~ and the caret ^.
+
+The cherry picking activity consists of choosing existing commits from somewhere else and applying them here. The git cherry-pick command behaves just like the git merge command.
+
+Bare repositories are repositories that do not contain working copy files but contain only the .git folder. A bare repository is essentially for sharing; if you use Git in a centralized way, pushing and pulling to a common remote (a local server, a GitHub repository, or so on), you will agree that the remote has no interest in checking out files you work on; the scope of that remote is only to be a central point of contact for the team, so having working copy files in it is a waste of space, and no one will edit them directly on the remote.
+
+In GitFlow, the master branch represents the final stage. Merging your work in it is equal to making a new release of your software. You usually don't start new branches from the master branch. You do it only if there is a severe bug you have to fix instantly, even if that bug has been found and fixed in another evolving branch. This way to operate makes you superfast when you have to react to a painful situation. Other than this, the master branch is where you tag your release.
+
+Hotfixes branches are branches derived only from the master branch, as we said earlier. Once you have fixed a bug, you merge the hotfix branch onto master so that you get a new release to ship. If the bug has not been resolved anywhere else in your repository, the strategy would be to merge the hotfix branch even into the develop branch. After that, you can delete the hotfix branch, as it has hit the mark.
+
+The develop branch is a sort of beta software branch. When you start to implement a new feature, you have to create a new branch starting from the develop branch. You will continue to work in that branch until you complete your task.
+
+To prepare an incoming release, you have to branch from develop, assigning at the branch a name composed of the release prefix. This will be followed by the numeric form of your choice for your release branch (for example release/1.0).
+
+When you have to start the implementation of a new feature, you have to create a new branch from the develop branch. Feature branches start with the feature/ prefix (for example, feature/NewAuthenitcation or feature/#987 if you use some feature- tracking software, as #987 is the feature ID).
+
+Just like GitFlow, even in GitHub flow, deployment is done from the master branch. This is the only main branch in this flow. In GitFlow, there are not hotfix, develop, or other particular branches. Bug fixes, new implementation, and so on are constantly merged onto the master branch.
+
+With Git, sharing work between repositories happens via operations called “push” and “pull”: you pull changes from a remote repository and push changes to it. To work on a project, you “clone” it from an existing repository, possibly over a network via protocols such as HTTP and SSH. Your clone is a full copy of the original, including all project history, completely functional on its own. In particular, you do not need to contact the first repository again in order to examine the history of your clone or commit to it—however, your new repository does retain a reference to the original one, called a “remote.” This reference includes the state of the branches in the remote as of the last time you pulled from it; these are called “remote tracking” branches. If the original repository contains two branches named master and topic, their remote-tracking branches in your clone appear qualified with the name of the remote (by default called “origin”): origin/master and origin/topic. Most often, the master branch will be automatically checked out for you when you first clone the repository; Git initially checks out whatever the current branch is in the remote repository. If you later ask to check out the topic branch, Git sees that there isn’t yet a local branch with that name—but since there is a remote-tracking branch named origin/topic, it automatically creates a branch named topic and sets origin/topic as its “upstream” branch. This relationship causes the push/pull mechanism to keep the changes made to these branches in sync as they evolve in both your repository and in the remote. When you pull, Git updates the remote-tracking branches with the current state of the origin repository; conversely, when you push, it updates the remote with any changes you’ve made to corresponding local branches. If these changes conflict, Git prompts you to merge the changes before accepting or sending them, so that neither side loses any history in the process.
+
 * * *
 
 #Git Commands
@@ -112,7 +152,7 @@ git config -e
 git config --global -e : edit global config file.  
 git config --system  
 git config --global  
-git config --list  
+git config --list : if you are inside a repository, it will show all the configurations from repository to system level. To filter the list, append --system, --global, or --local options to obtain only the desired level configurations.   
 git config user.name  
 git config --global alias.ci commit : sets up an alias for commit command.  
 git config --global diff.tool toolname : sets the external tool to compare differences.  
@@ -123,9 +163,10 @@ editor.
 git init
 
 git add  
-git add . : adds everything.
+git add . : adds everything.  
+git add *.txt : adds file of certain patterns
 
-git clone https://github.com/libgit2/libgit2  
+git clone https://github.com/libgit2/libgit2   
 git clone https://github.com/libgit2/libgit2 mylibgit  
 git clone -b <branch> <remote_repo> : Checkout specific branch.  
 
@@ -171,9 +212,8 @@ git branch -r : shows remote branch.
 git branch -a : shows all branches, both local and remote.  
 git branch -vv : lists upstream branches.
 
-git show : Reports the changes introduced by the most recent commit. Examines a particular commit.
-
 git checkout testing  
+git checkout – : checks out the previous branch you were in.  
 git checkout -- index.html : discard local changesand downloads the file from repo.  
 git checkout 2907d12603a24 -- resources.html : retrieving old version of a file. When u checkout from a particular
 revision, it puts it into staging area.
@@ -189,6 +229,7 @@ from (so that you can get others changes). The command git remote add origin git
 git remote show origin : shows  information about a particular remote.    
 git remote rename origin newRemoteName   
 git remote rm <remote-name> : removes a remote.  
+git remote add upstream https://github.com/<original-owner>/<original-repository>.git : add original repository that you forked from as remote.
 
 git fetch [remote-name] : The command goes out to that remote project and pulls down all the data from that remote 
 project that you don’t have yet.
@@ -201,17 +242,23 @@ git push -u origin new-branch : If you have added a local branch of your own and
 use the -u option to have Git add your branch to the remote, and set up tracking for your local branch in the usual
 way.  
 
+git stash  
+git stash list  
+git stash apply  
 
 git merge origin/master
 
 git mv old_filename new_filename : To rename or move a file.
 
 git rm <file_to_delete>
+git rm --cached : Unstages file.
 
 git gui : opens git gui window.
 
 gitk : built-in git gui. Gitk is a tool for viewing the history of Git repositories. 
 gitk --all &
+
+git init --bare NewRepository.git : initialises a bare repository.
 
 git tag
 
@@ -221,13 +268,25 @@ git ls-files -o : shows untracked files.
 
 git mergetool -t kdiff3
 
+git blame <file_name>
+
+git show : Reports the changes introduced by the most recent commit. Examines a particular commit.
+
+git archive
+
+git bundle
+
 cat .git/config : To see remotes and other config settings.
+
+ls -la
+
 
 * * *
 #References
 
 <http://gitref.org/><br/>
 <https://git-scm.com/docs><br/>
+<http://pcottle.github.io/learnGitBranching/>  
 <http://ndpsoftware.com/git-cheatsheet.html><br/>
 <http://rogerdudler.github.io/git-guide/><br/>
 <http://git-scm.com/book/en/v2><br/>
