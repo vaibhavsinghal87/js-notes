@@ -214,7 +214,7 @@ git branch -vv : lists upstream branches.
 
 git checkout testing  
 git checkout – : checks out the previous branch you were in.  
-git checkout -- index.html : discard local changesand downloads the file from repo.  
+git checkout -- index.html : discard local changes and downloads the file from repo.  
 git checkout 2907d12603a24 -- resources.html : retrieving old version of a file. When u checkout from a particular
 revision, it puts it into staging area.
 
@@ -279,6 +279,8 @@ git bundle
 cat .git/config : To see remotes and other config settings.
 
 ls -la
+
+clear : clears the git bash screen.
 
 
 * * *
