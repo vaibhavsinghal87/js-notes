@@ -237,7 +237,7 @@ project that you don’t have yet.
 git push origin master : This is a command that says push the commits in the local branch named master to the remote 
 named origin.  
 git push --delete origin branchName : deletes remote branch.  
-git push origin :branchName : deletes a branch on the remote. 
+git push origin :branchName : deletes a branch on the remote.  
 git push -u origin new-branch : If you have added a local branch of your own and want to start sharing it with others,
 use the -u option to have Git add your branch to the remote, and set up tracking for your local branch in the usual
 way.  
