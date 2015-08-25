@@ -9,7 +9,7 @@ default name for a remote when you run git clone. If you run git clone -o booyah
 booyah/master as your default remote branch.
 
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.
-
+s
 Git only allows to amend the last commit because nothing depends on it.
 
 When we do git reset to a previous point in time, it doesn't throw away the commits. They simply get garbage collected.
@@ -245,6 +245,7 @@ way.
 git stash  
 git stash list  
 git stash apply  
+git stash drop stash@{0}
 
 git merge origin/master
 
