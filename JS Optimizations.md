@@ -1,3 +1,4 @@
+# Web Performance
 
 - Loading and execution - JavaScript performance in the browser is arguably the most important usability issue facing developers. The problem is complex because of the blocking nature of JavaScript, which is to say that nothing else can happen while JavaScript code is being executed. In fact, most browsers use a single process for both user interface (UI) updates and JavaScript execution, so only one can happen at any given moment in time. The longer JavaScript takes to execute, the longer it takes before the browser is free to respond to user input.
 
@@ -70,4 +71,11 @@ http://www.webreference.com/programming/javascript/jkm3/index.html <br/>
 https://developer.yahoo.com/performance/rules.html <br/>
 http://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/ <br/>
 https://gtmetrix.com/enable-gzip-compression.html <br/>
-http://mrale.ph/blog/2011/12/18/v8-optimization-checklist.html
+http://mrale.ph/blog/2011/12/18/v8-optimization-checklist.html <br/>
+https://moz.com/blog/15-tips-to-speed-up-your-website <br/>
+http://www.webweaver.nu/html-tips/load-time.shtml <br/>
+http://yslow.org/ <br/>
+https://developer.yahoo.com/performance/ <br/>
+http://blog.crazyegg.com/2013/12/11/speed-up-your-website/ <br/>
+https://www.devbridge.com/articles/need-for-speed-how-to-improve-your-website-performance/ <br/>
+http://webdesign.tutsplus.com/articles/best-practices-for-increasing-website-performance--webdesign-9109
