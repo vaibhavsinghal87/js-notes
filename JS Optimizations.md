@@ -4,7 +4,11 @@
 
 - On a basic level, this means that the very presence of a script tag is enough to make the page wait for the script to be parsed and executed. Whether the actual JavaScript code is inline with the tag or included in an external file is irrelevant; the page download and rendering must stop and wait for the script to complete before proceeding. This is a necessary part of the page’s life cycle because the script may cause changes to the page while executing
 
-- When the browser encounters a script tag, as in this HTML page, there is no way of knowing whether the JavaScript will insert content into the <p>, introduce additional elements, or perhaps even close the tag. Therefore, the browser stops processing the page as it comes in, executes the JavaScript code, then continues parsing and rendering the page. The same takes place for JavaScript loaded using the src attribute; the browser must first download the code from the external file, which takes time, and then parse and execute the code. Page rendering and user interaction are completely blocked during this time.
+- Any time spent by the browser executing a page’s JavaScript is time that it cannot spend responding to other user events. It is therefore vital that any JavaScript in a page execute as fast as possible. Otherwise, the web page and the browser itself may become sluggish or freeze up entirely.
+
+- When the browser encounters a script tag, as in this HTML page, there is no way of knowing whether the JavaScript will insert content into the p, introduce additional elements, or perhaps even close the tag. Therefore, the browser stops processing the page as it comes in, executes the JavaScript code, then continues parsing and rendering the page. The same takes place for JavaScript loaded using the src attribute; the browser must first download the code from the external file, which takes time, and then parse and execute the code. Page rendering and user interaction are completely blocked during this time.
+
+- Although it’s clear that scripts must be executed sequentially, there’s no reason they have to be downloaded sequentially.
 
 - Script positioning - Keep in mind that browsers don’t start rendering anything on the page until the opening <body> tag is encountered. Putting scripts at the top of the page in this way typically leads to a noticeable delay, often in the form of a blank white page, before the user can even begin reading or otherwise interacting with the page. Because scripts block downloading of all resource types on the page, it’s recommended to place all script tags as close to the bottom of the <body> tag as possible so as not to affect the download of the entire page.
 
@@ -57,6 +61,21 @@ A JavaScript heap snapshot is a compiled list of objects found in the page's ove
 
 - Build DOM separately before adding it to the page
 
+- The following tips are derived from the book High Performance Web Sites (O’Reilly) by Steve Souders:
+  - Make fewer HTTP requests to reduce object overhead.
+  - Use a content delivery network.
+  - Add an Expires header.
+  - Gzip/compress text components.
+  - Put stylesheets at the top in the head.
+  - Put scripts at the bottom of the body.
+  - Avoid CSS expressions which are CPU-intensive and can be evaluated frequently.
+  - Make JavaScript and CSS files external.
+  - Reduce Domain Name System (DNS) lookups to reduce the overhead of DNS delay by splitting lookups between two to four unique hostnames.
+  - Minify JavaScript.
+  - Avoid redirects which slow performance. It’s better to CNAME or alias.
+  - Remove duplicate scripts to eliminate extra HTTP requests in Internet Explorer.
+  - Configure ETags for sites hosted on multiple servers. FileETag none in Apache removes Etags to avoid improper cache validation.
+  - Make Ajax cacheable and small to avoid unnecessary HTTP requests.
 
 #References - 
 
@@ -78,4 +97,5 @@ http://yslow.org/ <br/>
 https://developer.yahoo.com/performance/ <br/>
 http://blog.crazyegg.com/2013/12/11/speed-up-your-website/ <br/>
 https://www.devbridge.com/articles/need-for-speed-how-to-improve-your-website-performance/ <br/>
-http://webdesign.tutsplus.com/articles/best-practices-for-increasing-website-performance--webdesign-9109
+http://webdesign.tutsplus.com/articles/best-practices-for-increasing-website-performance--webdesign-9109 <br/>
+https://css-tricks.com/efficiently-rendering-css/
