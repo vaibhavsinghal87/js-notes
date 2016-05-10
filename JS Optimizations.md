@@ -36,7 +36,7 @@
 - Using the debugger keyword
 
 
-- The Timeline panel allows us to detect the overall web page performance with respect to JavaScript; it also allows us to inspect browser rendering events. To use the Timeline panel, all we need to do is click the record button and reload the page in Chrome. In the Timeline inspector, there are four types of events that the Timeline panel shows. These are Loading, Scripting, Rendering, and Painting events.
+- The Timeline panel allows us to detect the overall web page performance with respect to JavaScript; it also allows us to inspect browser rendering events. To use the Timeline panel, all we need to do is click the record button and reload the page in Chrome. In the Timeline inspector, there are four types of events that the Timeline panel shows. These are Loading, Scripting, Rendering, and Painting events. It gives you a look under the hood of how the browser renders web pages and lets you see which processes and resources require more computing power for both rendering and JavaScript load times. This tool allows you to visualize where you need to fine-tune and better optimize your web applications.
 
 - The Loading event
 The Loading event handles requests and responses; typically these are loading external scripts and files as well as POST requests for data leaving the page. Loading events also include the initial parsing of HTML code. In Google Chrome's Timeline, these show up in blue.
