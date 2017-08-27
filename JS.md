@@ -27,3 +27,6 @@ console.log(myArray.prop) // logs 'test'
 Bracket notation can be very handy when you need to access a property key and what you have to work with is a variable that contains a string value representing the property name. Additionally, bracket notion can come in handy for getting at property names that are invalid JavaScript identifiers.
 
 Only properties that are enumerable (i.e. available when looping over an objects properties) show up with the for in loop. For example, the constructor property will not show up. It is possible to check which properties are enumerable with the propertyIsEnumerable() method.
+
+
+
