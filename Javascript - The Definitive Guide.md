@@ -1,18 +1,33 @@
-JavaScript programs are written using the Unicode character set.
+JavaScript programs are written using the Unicode character set. JavaScript assumes that the source code it is interpreting has already been normalized and makes no attempt to normalize identifiers, strings, or regular expressions itself.
 
 JavaScript is a case-sensitive language.
 
+Note that JavaScript does not treat every line break as a semicolon: it usually treats line breaks as semicolons only if it can’t parse the code without the semicolons. More formally (and with two exceptions described below), JavaScript treats a line break as a semicolon if the next non space character cannot be interpreted as a continuation of the current statement.
+
+JavaScript types can be divided into two categories: primitive types and object types. JavaScript’s primitive types include numbers, strings of text (known as strings), and Boolean truth values (known as booleans). The special JavaScript values null and undefined are primitive values, but they are not numbers, strings, or booleans.
+
 Functions that are written to be used (with the new operator) to initialize a newly created object are known as constructors. 
+
+The JavaScript interpreter performs automatic garbage collection for memory management. This means that a program can create objects as needed, and the programmer never needs to worry about destruction or deallocation of those objects. When an object is no longer reachable—when a program no longer has any way to refer to it—the interpreter knows it can never be used again and automatically reclaims the memory it was occupying.
 
 JavaScript variables are untyped: you can assign a value of any type to a variable, and you can later assign a value of a different type to the same variable.
 
-The JavaScript number format allows you to exactly represent all integers between −9007199254740992 (−253) and 9007199254740992 (253), inclusive. If you use integer values larger than this, you may lose precision in the trailing digits.
+Unlike many languages, JavaScript does not make a distinction between integer values and floating-point values. All numbers in JavaScript are represented as floating-point values. JavaScript represents numbers using the 64-bit floating-point format defined by the IEEE 754 standard. The JavaScript number format allows you to exactly represent all integers between −9007199254740992 (−253) and 9007199254740992 (253), inclusive. If you use integer values larger than this, you may lose precision in the trailing digits.
 
 * * *
 Arithmetic in JavaScript does not raise errors in cases of overflow, underflow, or division by zero. When the result of a numeric operation is larger than the largest representable number (overflow), the result is a special infinity value, which JavaScript prints as Infinity. Similarly, when the absolute value of a negative value becomes larger than the absolute value of the largest representable negative number, the result is negative infinity, printed as -Infinity.
 Division by zero is not an error in JavaScript: it simply returns infinity or negative infinity. There is one exception, however: zero divided by zero does not have a well-defined value, and the result of this operation is the special not-a-number value, printed as NaN. NaN also arises if you attempt to divide infinity by infinity, or take the square root of a negative number or use arithmetic operators with non-numeric operands that cannot be converted to numbers.
 
-The not-a-number value has one unusual feature in JavaScript: it does not compare equal to any other value, including itself. This means that you can’t write x == NaN to determine whether the value of a variable x is NaN. Instead, you should write x != x. That expression will be true if, and only if, x is NaN. The function isNaN() is similar. It returns true if its argument is NaN, or if that argument is a non-numeric value such as a string or an object.
+The not-a-number value has one unusual feature in JavaScript: it does not compare equal to any other value, including itself. This means that you can’t write x == NaN to determine whether the value of a variable x is NaN. Instead, you should write x != x. That expression will be true if, and only if, x is NaN. The function isNaN() is similar. It returns true if its argument is NaN, or if that argument is a non-numeric value such as a string or an object. Following are treated as false in javascript - 
+```
+Boolean false
+undefined
+null
+0
+-0
+NaN
+""
+```
 * * *
 JavaScript uses the UTF-16 encoding of the Unicode character set, and JavaScript strings are sequences of unsigned 16-bit values. The most commonly used Unicode characters (those from the “basic multilingual plane”) have codepoints that fit in 16 bits and can be represented by a single element of a string. Unicode characters whose codepoints do not fit in 16 bits are encoded following the rules of UTF-16 as a sequence (known as a “surrogate pair”) of two 16-bit values. This means that a JavaScript string of length 2 (two 16-bit values) might represent only a single Unicode character:
 ```
@@ -37,7 +52,7 @@ var s = "hello world!";                             // A string
 var word = s.substring(s.indexOf(" ")+1, s.length); // Use string properties
 ```
 Primitive strings are not objects, though, so why do they have properties? Whenever you try to refer to a property of a string s, JavaScript converts the string value to an object as if by calling new String(s). This object inherits (see Inheritance) string methods and is used to resolve the property reference. Once the property has been resolved, the newly created object is discarded. (Implementations are not required to actually create and discard this transient object: they must behave as if they do, however.)
-Numbers and booleans have methods for the same reason that strings do: a temporary object is created using the Number() or Boolean() constructor, and the method is resolved using that temporary object. There are no wrapper objects for the null and undefined values: any attempt to access a property of one of these values causes a TypeError.
+Numbers and booleans have methods for the same reason that strings do: a temporary object is created using the Number() or Boolean() constructor, and the method is resolved using that temporary object. There are no wrapper objects for the null and undefined values: any attempt to access a property of one of these values causes a TypeError. Strings, numbers, and boolean values behave like objects when you try to read the value of a property (or method) from them. But if you attempt to set the value of a property, that attempt is silently ignored: the change is made on a temporary object and does not persist. The temporary objects created when you access a property of a string, number, or boolean are known as wrapper objects, and it may occasionally be necessary to distinguish a string value from a String object or a number or boolean value from a Number or Boolean object. The typeof operator will show you the difference between a primitive value and its wrapper object. If two distinct string values are compared, JavaScript treats them as equal if, and only if, they have the same length and if the character at each index is the same.
 Consider the following code and think about what happens when it is executed:
 ```
 var s = "test";         // Start with a string value.
