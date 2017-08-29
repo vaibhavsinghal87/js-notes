@@ -26,6 +26,8 @@
 
 - There are multiple ways to create objects and arrays in JavaScript, but nothing is faster than creating object and array literals.
 
+- Excessive use of the add-by-value operator involving large quantities of text can become inefficient. If you are experiencing slow performance when accumulating large strings, try pushing your string segments into items of an array (see Chapter 18, "The Array Object"). Then use the array's join() method to generate the resulting large string value.
+
 - Always use native methods when available, especially for mathematical calculations and DOM operations.
 
 - About the console time API - The console.time() method allows developers to have an understanding of what code affects performance and what doesn't. The console.time() method delivers results based on not only what browser you're using, but also what operating system and system hardware you're using.
