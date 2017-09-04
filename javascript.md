@@ -1,3 +1,5 @@
+The keyword prototype is a property of Function() objects. No other type of objects have this property.
+
 The prototype link has no effect on updating. The prototype link is used only in retrieval. If we try to retrieve a property value from an object, and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object. And if that object is lacking the property, then it goes to its prototype, and so on until the process finally bottoms out with Object.prototype. If the desired property exists nowhere in the prototype chain, then the result is the undefined value. This is called delegation.
 
 The standard properties in Object.prototype are all nonenumerable, which is why they do not show up in such a for/in loop.
