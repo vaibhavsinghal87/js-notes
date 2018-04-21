@@ -1,3 +1,31 @@
+- **NUMBER** - JavaScript has a single number type. Internally, it is represented as 64-bit floating point, the same as Java's double. Unlike most other programming languages, there is no separate integer type, so 1 and 1.0 are the same value. The value NaN is a number value that is the result of an operation that cannot produce a normal result. NaN is not equal to any value, including itself. You can detect NaN with the isNaN( number ) function.
+
+- When used inside of a function, the var statement defines the function's private variables.
+
+- Unlike many other languages, blocks in JavaScript do not create a new scope, so variables should be defined at the top of the function, not in blocks.
+
+- The values produced by *typeof* are 'number', 'string', 'boolean', 'undefined', 'function', and 'object'. If the operand is an array or null, then the result is 'object', which is wrong.
+
+- The simple types of JavaScript are numbers, strings, booleans (true and false), null, and undefined. All other values are objects. Numbers, strings, and booleans are object-like in that they have methods, but they are immutable. Objects in JavaScript are mutable keyed collections. In JavaScript, arrays are objects, functions are objects, regular expressions are objects, and, of course, objects are objects.
+
+- An object is a container of properties, where a property has a name and a value. A property name can be any string, including the empty string. A property value can be any JavaScript value except for undefined.
+
+- The prototype link is used only in retrieval. If we try to retrieve a property value from an object, and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object. And if that object is lacking the property, then it goes to its prototype, and so on until the process finally bottoms out with Object.prototype. If the desired property exists nowhere in the prototype chain, then the result is the undefined value. This is called delegation.
+
+- The *delete* operator can be used to remove a property from an object. It will remove a property from the object if it has one. It will not touch any of the objects in the prototype linkage. Removing a property from an object may allow a property from the prototype linkage to shine through.
+
+- *Functions* in JavaScript are objects. Objects are collections of name/value pairs having a hidden link to a prototype object. Objects produced from object literals are linked to Object.prototype. Function objects are linked to Function.prototype (which is itself linked to Object.prototype). Every function is also created with two additional hidden properties: the function's context and the code that implements the function's behavior.
+
+- Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: *this* and *arguments*. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: *the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern*. The patterns differ in how the bonus parameter *this* is initialized.
+
+- Because of a design error, *arguments* is not really an array. It is an *array-like* object. arguments has a length property, but it lacks all of the array methods.
+
+- The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments).
+
+- There is a serious hazard with the use of constructor functions. If you forget to include the *new* prefix when calling a constructor function, then this will not be bound to a new object. Sadly, this will be bound to the global object, so instead of augmenting your new object, you will be clobbering global variables. That is really bad. There is no compile warning, and there is no runtime warning. 
+
+- Array *length* can be set explicitly. Making the length larger does not allocate more space for the array. Making the length smaller will cause all properties with a subscript that is greater than or equal to the new length to be deleted.
+
 Deleting an array element leaves a “hole” in the array and does not change the array’s length. The resulting array is sparse.
 
 All objects created by object literals have the same prototype object, and we can refer to this prototype object in JavaScript code as Object.prototype. Objects created using the new keyword and a constructor invocation use the value of the prototype property of the constructor function as their prototype. So the object created by new Object() inherits from Object.prototype just as the object created by {} does. Similarly, the object created by new Array() uses Array.prototype as its prototype, and the object created by new Date() uses Date.prototype as its prototype.
