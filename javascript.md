@@ -1,3 +1,5 @@
+## Javascript The Good Parts - Douglas Crockford ##
+
 - **NUMBER** - JavaScript has a single number type. Internally, it is represented as 64-bit floating point, the same as Java's double. Unlike most other programming languages, there is no separate integer type, so 1 and 1.0 are the same value. The value NaN is a number value that is the result of an operation that cannot produce a normal result. NaN is not equal to any value, including itself. You can detect NaN with the isNaN( number ) function.
 
 - When used inside of a function, the var statement defines the function's private variables.
@@ -33,6 +35,88 @@
 - We can use *functions* and *closure* to make modules. A module is a function or object that presents an interface but that hides its state and implementation. By using functions to produce modules, we can almost completely eliminate our use of global variables, thereby mitigating one of JavaScript's worst features.
 
 - Array *length* can be set explicitly. Making the length larger does not allocate more space for the array. Making the length smaller will cause all properties with a subscript that is greater than or equal to the new length to be deleted.
+
+### Reference ###
+- https://github.com/iteles/Javascript-the-Good-Parts-notes
+
+* * *
+
+## The Principles of Object Oriented JavaScript - Nicholas C. Zakas ##
+
+- While other programming languages distinguish between primitive and reference types by storing primitives on the stack and references in the heap, JavaScript does away with this concept completely: It tracks variables for a particular scope with a variable object. Primitive values are stored directly on the variable object, while reference values are placed as a pointer in the variable object, which serves as a reference to a location in memory where the object is stored.
+
+- In JavaScript, as in many other languages, a variable holding a primitive directly contains the primitive value (rather than a pointer to an object). When you assign a primitive value to a variable, the value is copied into that variable. This means that if you set one variable equal to another, each variable gets its own copy of the data.
+
+- **Identifying Primitive Types** - The best way to identify primitive types is with the typeof operator, which works on any variable and returns a string indicating the type of data. The typeof operator works well with strings, numbers, Booleans, and
+undefined.
+
+- The best way to determine if a value is null is to compare it against *null* directly, like this: console.log(value === null);
+
+- Despite the fact that they’re primitive types, strings, numbers, and Booleans actually have *methods*. (The null and undefined types have no methods.)
+
+- Reference types do not store the object directly into the variable to which it is assigned, so the object variable doesn’t actually contain the object instance. Instead, it holds a pointer (or reference) to the location in memory where the object exists. This is the primary difference between objects and primitive values, as the primitive is stored directly in the variable. When you assign an object to a variable, you’re actually assigning a pointer. That means if you assign one variable to another, each variable gets a copy of the pointer, and both still reference the same object in memory.
+
+- JavaScript is a garbage-collected language, so you don’t really need to worry about memory allocations when you use reference types. However, it’s best to dereference objects that you no longer need so that the garbage collector can free up that memory. The best way to do this is to set the object variable to *null*.
+
+- A function is the easiest reference type to identify because when you use the typeof operator on a function, the operator should return "function". Other reference types are trickier to identify because, for all reference types other than functions, typeof returns "object". To identify reference types more easily, you can use JavaScript’s *instanceof* operator.
+
+- If your environment is ECMAScript 5 compliant, Array.isArray() is the best way to identify arrays.
+
+- The number of *arguments* a function expects is stored on the function’s *length* property. Remember, a function is actually just an
+object, so it can have properties. The length property indicates the function’s *arity*, or the number of parameters it expects. Knowing the function’s arity is important in JavaScript because functions won’t throw an error if you pass in too many or too few parameters.
+
+-  **Function Overloading** - Most object-oriented languages support function *overloading*, which is the ability of a single function to have multiple signatures. A function signature is made up of the function name plus the number and type of parameters the function expects. Thus, a single function can have one signature that accepts a single string argument and another that accepts two numeric
+arguments. The language determines which version of a function to call based on the arguments that are passed in. As mentioned previously, JavaScript functions can accept any number of parameters, and the types of parameters a function takes aren’t specified
+at all. That means JavaScript functions don’t actually have signatures. A lack of function signatures also means a lack of function overloading. The fact that functions don’t have signatures in JavaScript doesn’t mean you can’t mimic function overloading. You can retrieve the number of parameters that were passed in by using the arguments object, and you can use that information to determine what to do.
+
+- There are three function methods that allow you to change the value of *this* - *call, apply, bind*.
+
+- There is a difference between the *enumerable* properties returned in a *for-in* loop and the ones returned by *Object.keys()*. The for-in loop also enumerates *prototype properties*, while Object.keys() returns only *own (instance) properties*.
+
+- Not all properties on object are *enumerable*. In fact, most of the native methods on objects have their [[Enumerable]] attribute set to false. You can check whether a property is enumerable by using the *propertyIsEnumerable()* method, which is present on every object.
+
+- There are two different types of properties: *data* properties and *accessor* properties. *Data properties* contain a value. The default behavior of the [[Put]] method is to create a data property. *Accessor properties* don’t contain a value but instead define a function to call when the property is read (called a getter), and a function to call when the property is written to (called a setter). Accessor properties only require either a getter or a setter, though they can have both.
+You don’t need to define both a getter and a setter; you can choose one or both. If you define only a getter, then the property becomes read-only, and attempts to write to it will fail silently in nonstrict mode and throw an error in strict mode. If you define only a setter, then the property becomes write-only, and attempts to read the value will fail silently in both strict and nonstrict modes.
+
+- There are two *property attributes* shared between *data and accessor* properties. One is *[[Enumerable]]*, which determines whether you can iterate over the property. The other is *[[Configurable]]*, which determines whether the property can be changed. By default, all properties you declare on an object are both enumerable and configurable. If you want to change property attributes, you can use the *Object.defineProperty()* method.
+
+- Data properties possess two additional attributes that accessors do not - *[[Value]] and [[Writable]]*.
+
+- Accessor properties also have two additional attributes. Because there is no value stored for accessor properties, there is no need for [[Value]] or [[Writable]]. Instead, accessors have *[[Get]] and [[Set]]*, which contain the getter and setter functions respectively.
+
+- f you try to create a property with both data and accessor attributes, you will get an error.
+
+- It’s also possible to define multiple properties on an object simultaneously if you use *Object.defineProperties()* instead of Object.defineProperty(). This method accepts two arguments: the object to work on and an object containing all of the property information.
+
+- If you need to fetch property attributes, you can do so in JavaScript by using *Object.getOwnPropertyDescriptor()*. As the name suggests, this method works only on *own* properties. This method accepts two arguments: the object to work on and the property name to retrieve. If the property exists, you should receive a descriptor object with four properties: configurable, enumerable, and the two others appropriate for the type of property.
+
+- Objects, just like properties, have internal attributes that govern their behavior. One of these attributes is *[[Extensible]]*, which is a Boolean value indicating if the object itself can be modified. All objects you create are extensible by *default*, meaning new properties can be added to the object at any time. By setting [[Extensible]] to false, you can prevent new properties from being added to an object. There are three different ways to accomplish this - *Object.preventExtensions(), Object.seal(), Object.freeze()*.
+
+- One way to create a nonextensible object is with *Object.preventExtensions()*. This method accepts a single argument, which is the object you want to make nonextensible. Once you use this method on an object, you’ll never be able to add any new properties to it again. You can check the value of *[[Extensible]]* by using *Object.isExtensible()*.
+
+- You can use the *Object.seal()* method on an object to seal it. When that happens, the *[[Extensible]]* attribute is set to *false*, and all properties have their *[[Configurable]]* attribute set to *false*. You can check to see whether an object is sealed using *Object.isSealed()*.
+
+- The last way to create a *nonextensible* object is to freeze it. If an object is frozen, you can’t *add or remove* properties, you can’t change properties’ types, and you can’t write to any data properties. In essence, a frozen object is a *sealed object where data properties are also read-only*. Frozen objects can’t become *unfrozen*, so they remain in the state they were in when they became frozen. You can freeze an object by using *Object.freeze()* and determine if an object is frozen by using *Object.isFrozen()*.
+
+- Frozen objects are simply snapshots of an object at a particular point in time. They are of limited use and should be used rarely.
+
+- *Strict mode* doesn’t assign *this* to the global object. Instead, *this* remains undefined, and an error occurs whenever you attempt to create a property on undefined.
+
+- An *instance* keeps track of its *prototype* through an internal property called *[[Prototype]]*. This property is a pointer back to the prototype object that the instance is using. When you create a new object using *new*, the constructor’s prototype property is assigned to the [[Prototype]] property of that new object. 
+
+- You can read the value of the *[[Prototype]]* property by using the *Object.getPrototypeOf()* method on an object. You can also test to see if one object is a *prototype* for another by using the *isPrototypeOf()* method.
+
+- The *shared nature of prototypes* makes them ideal for defining methods once for all objects of a given type. Because methods tend to do the same thing for all instances, there’s no reason each instance needs its own set of methods. It’s much more efficient to *put the methods on the prototype* and then use this to access the current instance.
+
+- Perhaps the most interesting aspect of the relationships among *constructors, prototypes, and instances* is that there is no direct link between the instance and the constructor. There is, however, a direct link between the instance and the prototype and between the prototype and the constructor. This nature of this relationship means that any disruption between the instance and the prototype will also create a disruption between the instance and the constructor.
+
+- The ability to modify the *prototype* at any time has some interesting repercussions for *sealed* and *frozen* objects. When you use Object.seal() or Object.freeze() on an object, you are acting solely on the object instance and the own properties. You can’t add new own properties or change existing own properties on frozen objects, but you can certainly still add properties on the prototype and continue extending those objects.
+
+- Object literals have *Object.prototype* set as their [[Prototype]] implicitly, but you can also explicitly specify [[Prototype]] with the *Object.create()* method.
+
+- It is fairly common to override supertype methods with new functionality in the subtype, but what if you still want to access the supertype method? In other languages, you might be able to say super.toString(), but JavaScript doesn’t have anything similar. Instead, you can directly access the method on the supertype’s prototype and use either call() or apply() to execute the method on the subtype object. 
+
+* * *
 
 Deleting an array element leaves a “hole” in the array and does not change the array’s length. The resulting array is sparse.
 
@@ -290,6 +374,5 @@ Bar.prototype = Foo.prototype doesn’t create a new object for Bar.prototype to
 Bar.prototype = new Foo() does in fact create a new object that is duly linked to Foo.prototype as we’d want. But, it used the Foo(..) “constructor call” to do it. If that function has any side effects (such as logging, changing state, registering against other objects, adding data properties to this, etc.), those side effects happen at the time of this linking (and likely against the wrong object!), rather than only when the eventual Bar() “descendents” are created, as would likely be expected.
 
 
-# References
-- https://github.com/iteles/Javascript-the-Good-Parts-notes
+
 
