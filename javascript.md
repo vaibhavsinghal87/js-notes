@@ -10,7 +10,9 @@
 
 - An object is a container of properties, where a property has a name and a value. A property name can be any string, including the empty string. A property value can be any JavaScript value except for undefined.
 
-- The prototype link is used only in retrieval. If we try to retrieve a property value from an object, and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object. And if that object is lacking the property, then it goes to its prototype, and so on until the process finally bottoms out with Object.prototype. If the desired property exists nowhere in the prototype chain, then the result is the undefined value. This is called delegation.
+- The prototype link has no effect on updating. When we make changes to an object, the object's prototype is not touched. The prototype link is used only in retrieval. If we try to retrieve a property value from an object, and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object. And if that object is lacking the property, then it goes to its prototype, and so on until the process finally bottoms out with Object.prototype. If the desired property exists nowhere in the prototype chain, then the result is the undefined value. This is called delegation.
+
+- The prototype relationship is a dynamic relationship. If we add a new property to a prototype, that property will immediately be visible in all of the objects that are based on that prototype.
 
 - The *delete* operator can be used to remove a property from an object. It will remove a property from the object if it has one. It will not touch any of the objects in the prototype linkage. Removing a property from an object may allow a property from the prototype linkage to shine through.
 
@@ -18,11 +20,17 @@
 
 - Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: *this* and *arguments*. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: *the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern*. The patterns differ in how the bonus parameter *this* is initialized.
 
+- If a function is invoked with the *new* prefix, then a new object will be created with a hidden link to the value of the function's prototype member, and this will be bound to that new object. The new prefix also changes the behavior of the *return* statement. 
+
+- A function always returns a value. If the *return* value is not specified, then *undefined* is returned. If the function was invoked with the new prefix and the *return* value is not an object, then *this* (the new object) is returned instead.
+
 - Because of a design error, *arguments* is not really an array. It is an *array-like* object. arguments has a length property, but it lacks all of the array methods.
 
-- The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments).
+- The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of *this* and *arguments*).
 
 - There is a serious hazard with the use of constructor functions. If you forget to include the *new* prefix when calling a constructor function, then this will not be bound to a new object. Sadly, this will be bound to the global object, so instead of augmenting your new object, you will be clobbering global variables. That is really bad. There is no compile warning, and there is no runtime warning. 
+
+- We can use *functions* and *closure* to make modules. A module is a function or object that presents an interface but that hides its state and implementation. By using functions to produce modules, we can almost completely eliminate our use of global variables, thereby mitigating one of JavaScript's worst features.
 
 - Array *length* can be set explicitly. Making the length larger does not allocate more space for the array. Making the length smaller will cause all properties with a subscript that is greater than or equal to the new length to be deleted.
 
@@ -280,3 +288,8 @@ Even though this relationship exists between an instance and its constructor, yo
 Bar.prototype = Foo.prototype doesn’t create a new object for Bar.prototype to be linked to. It just makes Bar.prototype another reference to Foo.prototype, which effectively links Bar directly to the same object to which Foo links: Foo.prototype. This means when you start assigning, like Bar.prototype.myLabel = ..., you’re modifying not a separate object but the shared Foo.prototype object itself, which would affect any objects linked to Foo.prototype. This is almost certainly not what you want. If it is what you want, then you likely don’t need Bar at all, and should just use only Foo and make your code simpler.
 
 Bar.prototype = new Foo() does in fact create a new object that is duly linked to Foo.prototype as we’d want. But, it used the Foo(..) “constructor call” to do it. If that function has any side effects (such as logging, changing state, registering against other objects, adding data properties to this, etc.), those side effects happen at the time of this linking (and likely against the wrong object!), rather than only when the eventual Bar() “descendents” are created, as would likely be expected.
+
+
+# References
+- https://github.com/iteles/Javascript-the-Good-Parts-notes
+
