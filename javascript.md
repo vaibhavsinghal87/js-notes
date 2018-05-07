@@ -118,6 +118,30 @@ You don’t need to define both a getter and a setter; you can choose one or bot
 
 * * *
 
+## Object-oriented Javascript - Stoyan Stefanov, Kumar Chetan Sharma ##
+
+- When you use a number-like string (for example "1") as an operand in an arithmetic operation, the string is converted to a number behind the scenes. This works for all arithmetic operations except addition, because of its ambiguity.
+
+- A lazy way to convert any number-like string to a number is to multiply it by 1 (another way is to use a function called parseInt()).
+
+- If you use a logical operator on a non-Boolean value, the value is converted to Boolean behind the scenes.
+
+- Just because if *somevar* returns false doesn't mean that *somevar* is not defined. It could be that *somevar* is defined and initialized but contains a falsy value like *false* or *0*. A better way to check if a variable is defined is to use *typeof*. *typeof* always returns a string, and you can compare this string with the string *"undefined"*.
+```
+var result = "";
+if (typeof somevar !== "undefined") {
+    result = "yes";
+}
+result;
+""
+```
+- As you know, in JavaScript, there is no curly braces scope, but there is function scope. A variable defined in a function is not visible outside the function, but a variable defined in a code block (for example an if or a for loop) is visible outside
+the block.
+
+- When your JavaScript program execution enters a new function, all the variables declared anywhere in the function are moved (or elevated, or hoisted) to the top of the function. This is an important concept to keep in mind. Further, only the declaration is hoisted, meaning only the presence of the variable is moved to the top. Any assignments stay where they are.
+
+* * *
+
 Deleting an array element leaves a “hole” in the array and does not change the array’s length. The resulting array is sparse.
 
 All objects created by object literals have the same prototype object, and we can refer to this prototype object in JavaScript code as Object.prototype. Objects created using the new keyword and a constructor invocation use the value of the prototype property of the constructor function as their prototype. So the object created by new Object() inherits from Object.prototype just as the object created by {} does. Similarly, the object created by new Array() uses Array.prototype as its prototype, and the object created by new Date() uses Date.prototype as its prototype.
