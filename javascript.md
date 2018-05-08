@@ -140,6 +140,12 @@ the block.
 
 - When your JavaScript program execution enters a new function, all the variables declared anywhere in the function are moved (or elevated, or hoisted) to the top of the function. This is an important concept to keep in mind. Further, only the declaration is hoisted, meaning only the presence of the variable is moved to the top. Any assignments stay where they are.
 
+- Every function can be considered a *closure*. This is because every function maintains a secret link to the environment (the scope) in which it was created. Closure is created when a function keeps a link to its parent scope even after the parent has returned. And,
+every function is a closure because, at the very least, every function maintains access to the global scope, which is never destroyed.
+Function *parameters* behave like local variables to this function, but they are implicitly created (you don't need to use var for them). You can create a function that returns another function, which in turn returns its parent's parameter
+
+- Function parameters behave like local variables to a function, but they are implicitly created (you don't need to use var for them). You can create a function that returns another function, which in turn returns its parent's parameter.
+
 * * *
 
 Deleting an array element leaves a “hole” in the array and does not change the array’s length. The resulting array is sparse.
