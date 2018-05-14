@@ -146,6 +146,12 @@ Function *parameters* behave like local variables to this function, but they are
 
 - Function parameters behave like local variables to a function, but they are implicitly created (you don't need to use var for them). You can create a function that returns another function, which in turn returns its parent's parameter.
 
+- The *functions* in JavaScript are *objects*, and they contain *methods* and *properties*. Some of the *methods* that you're already familiar with are *apply()* and *call()*, and some of the other *properties* are *length* and *constructor*. Another property of the function objects is *prototype*.
+
+- It's important to note that the *prototype* is *live*. Objects are passed by reference in JavaScript, and therefore, the prototype is not copied with every new object instance. What does this mean in practice? It means that you can modify the prototype at any time and all the objects (even those created before the modification) will see the changes.
+
+- *propertyIsEnumerable()* returns *false* for all of the *prototype's* properties, even those that are enumerable and show up in the for-in loop.
+
 * * *
 
 Deleting an array element leaves a “hole” in the array and does not change the array’s length. The resulting array is sparse.
