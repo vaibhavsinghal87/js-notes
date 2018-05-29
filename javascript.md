@@ -36,7 +36,7 @@
 
 - Array *length* can be set explicitly. Making the length larger does not allocate more space for the array. Making the length smaller will cause all properties with a subscript that is greater than or equal to the new length to be deleted.
 
-### Reference ###
+### Refs - ###
 - https://github.com/iteles/Javascript-the-Good-Parts-notes
 
 * * *
@@ -147,6 +147,77 @@ Function *parameters* behave like local variables to this function, but they are
 - Function parameters behave like local variables to a function, but they are implicitly created (you don't need to use var for them). You can create a function that returns another function, which in turn returns its parent's parameter.
 
 - The *functions* in JavaScript are *objects*, and they contain *methods* and *properties*. Some of the *methods* that you're already familiar with are *apply()* and *call()*, and some of the other *properties* are *length* and *constructor*. Another property of the function objects is *prototype*.
+
+- JavaScript uses arrays to represent indexed arrays and objects to represent associative arrays. If you want a hash in JavaScript, you use an object.
+
+- If you try to return anything from the constructor function that is not an object, the constructor will proceed with its usual behavior and return this.
+```
+function C2() {
+this.a = 1;
+return {b: 2};
+}
+var c2 = new C2();
+typeof c2.a;
+"undefined"
+c2.b;
+2
+```
+
+- If you call a function that is designed to be a constructor but you omit the new operator, this is not an error, but it doesn't give you the expected result.
+
+- When an object is created, a special property is assigned to it behind the scenes—the constructor property. It contains a reference to the constructor function used to create this object. Because the constructor property contains a reference to a function, you might as
+well call this function to produce a new object.
+
+```
+function Hero(name) {
+this.name = name;
+}
+var h2 = new Hero('Michelangelo');
+var h3 = new h2.constructor('Rafaello');
+```
+
+- When you assign an object to a different variable or pass it to a function, you only pass a reference to that object. Consequently, if you make a change to the reference, you're actually modifying the original object.
+
+- When you compare objects, you'll get true only if you compare two references to the same object. Comparing two distinct objects that happen to have the exact same methods and properties returns false.
+
+- When using the Array() constructor, you can also pass values that will be assigned to the new array's elements. An exception to this is when you pass a single number to the constructor. In this case, the number is considered to be the length of the array.
+```
+var a = new Array(1, 2, 3, 'four');
+var a2 = new Array(5); // length of an array
+```
+
+- You already know that functions are a special data type. But, it turns out that there's more to it than that: functions are actually objects. There is a built-in constructor function called Function() that allows for an alternative (but not necessarily recommended) way to create a function.
+
+- When using the Function() constructor, you pass the parameter names first (as strings) and then the source code for the body of the function (again as a string). The JavaScript engine needs to evaluate the source code you pass and create the new function for you. This source code evaluation suffers from the same drawbacks as the eval() function, so defining functions using the Function() constructor should be avoided when possible.
+
+- Function objects, being a descendant of the top parent Object, get the default methods such as toString(). When invoked on a function, the toString() method returns the source code of the function.
+
+- You can see that you have this array-like arguments object looking so much like an array object. How can you reliably tell the difference between the two? Additionally, typeof returns object when used with arrays. Therefore, how can you tell the difference between an object and an array? The silver bullet is the Object object's toString() method. It gives you the internal class name used to create a given object. You have to call the original toString() method as defined in the prototype of the Object constructor. Otherwise, if you call the Array function's toString(), it will give you a different result, as it's been overridden for the specific purposes of the array objects.
+```
+Object.prototype.toString.call({});
+"[object Object]"
+Object.prototype.toString.call([]);
+"[object Array]"
+```
+
+- Differentiate between an array and the array-like object arguments - 
+```
+var toStr = Object.prototype.toString;
+(function () {
+return toStr.call(arguments);
+}());
+"[object Arguments]"
+```
+
+- You can even inspect DOM elements -
+```
+var toStr = Object.prototype.toString;
+toStr.call(document.body);
+"[object HTMLBodyElement]"
+```
+
+- A string object is similar to an array of characters. String objects have an indexed property for each character (introduced in ES5, but long supported in many browsers except old IEs) and they also have a length property.
+
 
 - It's important to note that the *prototype* is *live*. Objects are passed by reference in JavaScript, and therefore, the prototype is not copied with every new object instance. What does this mean in practice? It means that you can modify the prototype at any time and all the objects (even those created before the modification) will see the changes.
 
