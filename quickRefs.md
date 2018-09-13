@@ -3,7 +3,7 @@ This file contains links for quick references.
 
 * [Angular](#angular)
 * [Javascript](#javascript)
-* [VSCode](#vscode)
+* [VS Code](#vs-code)
 
 
 ### Angular
@@ -23,4 +23,5 @@ This file contains links for quick references.
 
 
 
-### VSCode
+### VS Code
+- Windows shortcuts - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
