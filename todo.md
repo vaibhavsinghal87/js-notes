@@ -99,6 +99,7 @@ learn to write test cases
 implement caching using service worker
 In dynamic loading of components, understand component lifecycle hooks and other intricacies
 uses of ng-template
+Explore scenarios of calling change detection manually ref.detectChanges()
 display card layout of concepts, can use pagination also, navbar component, sort component, back button, component Dynamic loading, moving all objects in separate files, understand lazy loading, styling of app, adding multiple concepts, core folder for header, footer, spinner, nav comp, guards, http, change all html files and include <section> in them, can create a json and load it dynamically which defines concepts specifications and other properties
 
 can create a stackblitz link for every concept
@@ -125,6 +126,8 @@ schematics
 ngrx
 zone.js - NgZone
 location vs activatedRoute
+
+create a user management app with user login
 
 Try all project scenarios of Macq
 
