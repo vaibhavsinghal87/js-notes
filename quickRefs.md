@@ -7,6 +7,18 @@ This file contains links for quick references.
 
 
 ### Angular
+- Angular Sample apps -
+  - https://github.com/start-angular/SB-Admin-BS4-Angular-6/
+  - https://github.com/DanWahlin/Angular-JumpStart
+  - https://github.com/gothinkster/angular-realworld-example-app
+  - https://github.com/orizens/echoes-player/
+  - https://github.com/mattlewis92/angular-calendar
+  - https://github.com/aviabird/angularspree/
+  - https://www.pluralsight.com/blog/software-development/10-angular-and-typescript-projects-to-take-you-from-zero-to-hero
+  - https://www.madewithangular.com/
+  - https://angularexpo.com/
+  - https://medium.mybridge.co/18-amazing-open-source-angular-projects-dd9e81d921ee
+  - https://medium.mybridge.co/angular-open-source-projects-for-the-past-year-v-2018-dba2041e6ff8
 - Angular CLI - https://github.com/angular/angular-cli/wiki
 - Angular Wiki Stories - https://github.com/angular/angular-cli/wiki/stories
 - Angular folder structure - 
