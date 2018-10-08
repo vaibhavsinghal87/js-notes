@@ -9,4 +9,5 @@
   - https://www.keycdn.com/blog/chrome-devtools
   - https://tutsplus.com/authors/umar-hansa
   - https://umaar.com/dev-tips/
+  - https://moderndevtools.com/
   
