@@ -79,8 +79,7 @@ A JavaScript heap snapshot is a compiled list of objects found in the page's ove
   - Configure ETags for sites hosted on multiple servers. FileETag none in Apache removes Etags to avoid improper cache validation.
   - Make Ajax cacheable and small to avoid unnecessary HTTP requests.
 
-#References - 
-
+# References - 
 https://github.com/handsontable/handsontable/wiki/JavaScript-&-DOM-performance-tips <br/>
 http://superherojs.com/ <br/>
 https://www.monitis.com/blog/2011/05/15/30-tips-to-improve-javascript-performance/ <br/>
