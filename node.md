@@ -23,3 +23,5 @@ npm prefix : Print the local prefix to standard out. This is the closest parent 
 npm prefix -g : value of the global prefix.
 
 npm cache clean
+
+npm ls -g --depth 0 - lists global node modules installed in system
